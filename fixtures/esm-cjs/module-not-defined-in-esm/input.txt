@@ -1,0 +1,6 @@
+file:///home/me/project/webpack.config.js:3
+module.exports = {
+^
+
+ReferenceError: module is not defined in ES module scope
+This file is being treated as an ES module because it has a '.js' file extension and '/home/me/project/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.

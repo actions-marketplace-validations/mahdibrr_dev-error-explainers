@@ -1,0 +1,21 @@
+{
+  "matched": true,
+  "redactions": 1,
+  "results": [
+    {
+      "rule": "database-url.pooler-username",
+      "family": "database-url",
+      "severity": "critical"
+    },
+    {
+      "rule": "database-url.prisma-pgbouncer-missing",
+      "family": "database-url",
+      "severity": "warning"
+    },
+    {
+      "rule": "database-url.sslmode-missing-supabase",
+      "family": "database-url",
+      "severity": "info"
+    }
+  ]
+}

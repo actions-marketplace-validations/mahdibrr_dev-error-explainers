@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "chunk-cache.html-vercel-cache-hit",
+      "family": "chunk-cache",
+      "severity": "info"
+    }
+  ]
+}

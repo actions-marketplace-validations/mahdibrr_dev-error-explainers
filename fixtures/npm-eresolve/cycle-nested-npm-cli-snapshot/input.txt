@@ -1,0 +1,20 @@
+# npm resolution error report
+
+Found: @isaacs/peer-dep-cycle-c@2.0.0
+node_modules/@isaacs/peer-dep-cycle-c
+  @isaacs/peer-dep-cycle-c@"2.x" from the root project
+
+Could not resolve dependency:
+peer @isaacs/peer-dep-cycle-b@"1" from @isaacs/peer-dep-cycle-a@1.0.0
+node_modules/@isaacs/peer-dep-cycle-a
+  @isaacs/peer-dep-cycle-a@"1.x" from the root project
+
+Conflicting peer dependency: @isaacs/peer-dep-cycle-c@1.0.0
+node_modules/@isaacs/peer-dep-cycle-c
+  peer @isaacs/peer-dep-cycle-c@"1" from @isaacs/peer-dep-cycle-b@1.0.0
+  node_modules/@isaacs/peer-dep-cycle-b
+    peer @isaacs/peer-dep-cycle-b@"1" from @isaacs/peer-dep-cycle-a@1.0.0
+    node_modules/@isaacs/peer-dep-cycle-a
+      @isaacs/peer-dep-cycle-a@"1.x" from the root project
+
+Fix the upstream dependency conflict, or retry this command with --no-strict-peer-deps, --force, or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.

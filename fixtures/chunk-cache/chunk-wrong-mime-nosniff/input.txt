@@ -1,0 +1,5 @@
+> GET /_next/static/chunks/5760-40c839657ea31a15.js HTTP/2
+< HTTP/2 200
+< content-type: application/octet-stream
+< x-content-type-options: nosniff
+< cache-control: public, max-age=31536000, immutable

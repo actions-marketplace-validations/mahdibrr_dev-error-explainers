@@ -1,0 +1,16 @@
+{
+  "matched": true,
+  "redactions": 1,
+  "results": [
+    {
+      "rule": "chunk-cache.html-browser-max-age",
+      "family": "chunk-cache",
+      "severity": "critical"
+    },
+    {
+      "rule": "chunk-cache.html-cf-cache-hit",
+      "family": "chunk-cache",
+      "severity": "critical"
+    }
+  ]
+}

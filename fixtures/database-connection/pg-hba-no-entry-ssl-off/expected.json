@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "database-connection.pg-hba-no-entry",
+      "family": "database-connection",
+      "severity": "critical"
+    }
+  ]
+}

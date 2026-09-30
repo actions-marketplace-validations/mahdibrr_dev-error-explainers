@@ -1,0 +1,5 @@
+HTTP/2 200
+content-type: text/html
+cache-control: public, max-age=0, must-revalidate
+x-vercel-cache: HIT
+age: 3000

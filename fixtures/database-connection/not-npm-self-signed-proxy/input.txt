@@ -1,0 +1,3 @@
+npm ERR! code SELF_SIGNED_CERT_IN_CHAIN
+npm ERR! errno SELF_SIGNED_CERT_IN_CHAIN
+npm ERR! request to https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.0.tgz failed, reason: self signed certificate in certificate chain

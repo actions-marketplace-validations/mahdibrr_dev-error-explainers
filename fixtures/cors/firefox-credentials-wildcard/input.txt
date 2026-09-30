@@ -1,0 +1,1 @@
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at https://api.example.com/me. (Reason: Credential is not supported if the CORS header 'Access-Control-Allow-Origin' is '*').

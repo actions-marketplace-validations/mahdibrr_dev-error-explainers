@@ -192,3 +192,26 @@ explainEsmCjs({ error: maybe, packageJson: maybe, fileExt: maybe, nodeVersion: m
 diagnoseDatabaseUrl('postgres://x', { client: undefined, forMigrations: undefined });
 cors.fixParams({ origin: maybe }, { credentials: undefined, extraHeaders: undefined });
 cors.guessStack({ url: maybe });
+
+// ---- 0.2.0: contract, redact, database-connection-explainer ---------------
+import {
+  diagnose as rootDiagnose, CONTRACT_RULES, FAMILIES, CONTRACT_VERSION, redact as rootRedact,
+  explainDatabaseConnection, type Diagnosis, type Family,
+} from 'dev-error-explainers';
+import * as contract from 'dev-error-explainers/contract';
+import * as redactMod from 'dev-error-explainers/redact';
+import * as dbConn from 'dev-error-explainers/database-connection-explainer';
+
+assertType<Equal<typeof rootDiagnose, typeof contract.diagnose>>();
+assertType<Equal<typeof CONTRACT_RULES, typeof contract.RULES>>();
+assertType<Equal<typeof rootRedact, typeof redactMod.redact>>();
+assertType<Equal<typeof explainDatabaseConnection, typeof dbConn.explain>>();
+const contractVersion: '0.1' = CONTRACT_VERSION;
+const families: readonly Family[] = FAMILIES;
+const dbFamily: Family = 'database-connection';
+const result = rootDiagnose('Error: connect ECONNREFUSED 127.0.0.1:5432', { only: ['database-connection'], client: 'pg' });
+const firstDiagnosis: Diagnosis | undefined = result.results[0];
+const pair = contract.diagnoseHeaders({ htmlHeaders: 'HTTP/2 200', chunkHeaders: 'HTTP/2 404' });
+const redactedText: string = rootRedact('Authorization: Bearer x').text;
+const dbIds: readonly dbConn.DbConnectionRuleId[] = dbConn.RULE_IDS;
+void contractVersion; void families; void dbFamily; void firstDiagnosis; void pair; void redactedText; void dbIds;

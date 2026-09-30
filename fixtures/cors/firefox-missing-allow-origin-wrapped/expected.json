@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "cors.missing-allow-origin",
+      "family": "cors",
+      "severity": "critical"
+    }
+  ]
+}

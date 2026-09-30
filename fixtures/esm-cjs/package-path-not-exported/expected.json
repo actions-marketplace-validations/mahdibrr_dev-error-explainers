@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "esm.package-path-not-exported",
+      "family": "esm-cjs",
+      "severity": "critical"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Error [ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING]: Stripping types is currently unsupported for files under node_modules, for "file:///app/node_modules/lib/src/index.ts"

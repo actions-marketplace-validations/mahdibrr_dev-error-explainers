@@ -1,0 +1,29 @@
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: react-inspector@5.1.1
+npm WARN Found: react@18.2.0
+npm WARN node_modules/react
+npm WARN   react@"^18.2.0" from the root project
+npm WARN   53 more (@design-systems/utils, ...)
+npm WARN
+npm WARN Could not resolve dependency:
+npm WARN peer react@"^16.8.4 || ^17.0.0" from react-inspector@5.1.1
+npm WARN node_modules/@storybook/addon-actions/node_modules/react-inspector
+npm WARN   react-inspector@"^5.1.0" from @storybook/addon-actions@6.5.13
+npm WARN   node_modules/@storybook/addon-actions
+npm WARN
+npm WARN Conflicting peer dependency: react@17.0.2
+npm WARN node_modules/react
+npm WARN   peer react@"^16.8.4 || ^17.0.0" from react-inspector@5.1.1
+npm WARN   node_modules/@storybook/addon-actions/node_modules/react-inspector
+npm WARN     react-inspector@"^5.1.0" from @storybook/addon-actions@6.5.13
+npm WARN     node_modules/@storybook/addon-actions
+npm WARN ERESOLVE overriding peer dependency
+npm WARN While resolving: @mdx-js/react@1.6.22
+npm WARN Found: react@18.2.0
+npm WARN node_modules/react
+npm WARN   react@"^18.2.0" from the root project
+npm WARN
+npm WARN Could not resolve dependency:
+npm WARN peer react@"^16.13.1 || ^17.0.0" from @mdx-js/react@1.6.22
+npm WARN node_modules/@storybook/addon-docs/node_modules/@mdx-js/react
+npm WARN   @mdx-js/react@"^1.6.22" from @storybook/addon-docs@6.5.13

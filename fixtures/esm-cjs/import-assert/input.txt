@@ -1,0 +1,8 @@
+file:///app/src/load.js:1
+import config from './config.json' assert { type: 'json' };
+                                   ^^^^^^
+
+SyntaxError: Unexpected identifier 'assert'
+    at compileSourceTextModule (node:internal/modules/esm/utils:340:16)
+
+Node.js v22.11.0

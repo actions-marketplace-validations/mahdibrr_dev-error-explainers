@@ -1,0 +1,10 @@
+HTTP/2 200
+date: Fri, 25 Sep 2026 09:12:04 GMT
+content-type: text/html; charset=utf-8
+cache-control: public, max-age=14400
+cf-cache-status: HIT
+age: 5231
+x-nextjs-deployment-id: dpl_3f9a1c
+server: cloudflare
+cf-ray: 8c1f2e3d4a5b6c7d-LHR
+set-cookie: session=abc123secret; Path=/; HttpOnly

@@ -1,0 +1,1 @@
+Too many database connections opened: FATAL: sorry, too many clients already

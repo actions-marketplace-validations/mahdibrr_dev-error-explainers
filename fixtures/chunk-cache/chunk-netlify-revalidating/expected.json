@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "chunk-cache.chunk-not-immutable",
+      "family": "chunk-cache",
+      "severity": "info"
+    }
+  ]
+}

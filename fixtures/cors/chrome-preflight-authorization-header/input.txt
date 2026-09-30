@@ -1,0 +1,1 @@
+Access to fetch at 'https://api.example.com/v1/orders' from origin 'http://localhost:3000' has been blocked by CORS policy: Request header field authorization is not allowed by Access-Control-Allow-Headers in preflight response.

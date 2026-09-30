@@ -1,0 +1,3 @@
+Error: P1001: Can't reach database server at `db.abcdefghij.supabase.co:5432`
+
+Please make sure your database server is running at `db.abcdefghij.supabase.co:5432`.

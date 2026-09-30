@@ -1,0 +1,33 @@
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+npm ERR!
+npm ERR! While resolving: full-stack-todo@0.1.0
+npm ERR! Found: react@18.3.1
+npm ERR! node_modules/react
+npm ERR!   peer react@"^18.2.0" from next@14.2.3
+npm ERR!   node_modules/next
+npm ERR!     next@"14.2.3" from the root project
+npm ERR!   peer react@"^18.3.1" from react-dom@18.3.1
+npm ERR!   node_modules/react-dom
+npm ERR!     peer react-dom@"^18.2.0" from next@14.2.3
+npm ERR!     node_modules/next
+npm ERR!       next@"14.2.3" from the root project
+npm ERR!     react-dom@"^18" from the root project
+npm ERR!   2 more (styled-jsx, the root project)
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! drizzle-orm@"" from the root project
+npm ERR!
+npm ERR! Conflicting peer dependency: react@18.2.0
+npm ERR! node_modules/react
+npm ERR!   peer react@"18.2.0" from react-native@0.74.0
+npm ERR!   node_modules/react-native
+npm ERR!     peer react-native@"" from @op-engineering/op-sqlite@5.0.5
+npm ERR!     node_modules/@op-engineering/op-sqlite
+npm ERR!       peerOptional @op-engineering/op-sqlite@">=2" from drizzle-orm@0.30.9
+npm ERR!       node_modules/drizzle-orm
+npm ERR!         drizzle-orm@"*" from the root project
+npm ERR!
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.

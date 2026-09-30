@@ -1,0 +1,16 @@
+npm ERR! code ERESOLVE npm ERR! ERESOLVE could not resolve npm ERR!
+npm ERR! While resolving: undefined@undefined npm ERR! Found:
+react-native@0.68.2 npm ERR! node_modules/react-native npm ERR!   peer
+react-native@"*" from @react-native-community/cli@7.0.3 npm ERR!
+node_modules/@react-native-community/cli npm ERR!
+@react-native-community/cli@"^7.0.3" from react-native@0.68.2 npm ERR!
+react-native@"0.69.0" from the root project npm ERR! npm ERR! Could
+not resolve dependency: npm ERR! react-native@"0.69.0" from the root
+project npm ERR! npm ERR! Conflicting peer dependency: react@18.0.0
+npm ERR! node_modules/react npm ERR!   peer react@"18.0.0" from
+react-native@0.69.0 npm ERR!   node_modules/react-native npm ERR!
+react-native@"0.69.0" from the root project npm ERR! npm ERR! Fix the
+upstream dependency conflict, or retry npm ERR! this command with
+--force, or --legacy-peer-deps npm ERR! to accept an incorrect (and potentially broken) dependency resolution. npm ERR! npm ERR! See
+C:\Users\SOMEONE\AppData\Local\npm-cache\eresolve-report.txt for
+a full report.

@@ -1,0 +1,3 @@
+Error occurred prerendering page "/".
+ReferenceError: window is not defined
+    at Chart (.next/server/app/page.js:1:4821)

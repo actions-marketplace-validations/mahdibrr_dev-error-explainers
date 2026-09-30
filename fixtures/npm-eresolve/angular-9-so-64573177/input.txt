@@ -1,0 +1,16 @@
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR!
+npm ERR! While resolving: gf-kautomata-pipeline-ui@0.0.0
+npm ERR! Found: @angular/core@9.1.12
+npm ERR! node_modules/@angular/core
+npm ERR!   @angular/core@"^9.1.4" from the root project
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! peer @angular/core@"7.2.16" from @angular/http@7.2.16
+npm ERR! node_modules/@angular/http
+npm ERR!   @angular/http@"^7.2.11" from the root project
+npm ERR!
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force, or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.

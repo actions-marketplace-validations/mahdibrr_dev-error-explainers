@@ -1,0 +1,32 @@
+name: 'Explain CI error (dev-error-explainers)'
+author: 'Mahdi Ben Rhouma'
+description: 'Explains a failed CI step from its log: cause and fix in the job summary, plus annotations. Offline, no LLM.'
+branding:
+  icon: 'alert-triangle'
+  color: 'orange'
+inputs:
+  log-file:
+    description: 'Path to the log teed from the failing step (e.g. build.log). Only the last 2 MB are read.'
+    required: true
+  node-version:
+    description: 'Node.js version for the ESM/CommonJS advice (e.g. 20.10.0). The version printed in the log wins.'
+    required: false
+    default: ''
+  fail-on-unrecognised:
+    description: 'Fail this step when no known error is recognised in the log.'
+    required: false
+    default: 'false'
+  max-annotations:
+    description: 'Maximum number of annotations to emit.'
+    required: false
+    default: '10'
+outputs:
+  recognised:
+    description: '"true" when at least one explainer recognised the log, else "false".'
+  families:
+    description: 'Comma-separated list of the explainers that fired (e.g. esm-cjs-explainer,build-error-decoder).'
+  summary-md:
+    description: 'The Markdown written to the job summary (secrets masked).'
+runs:
+  using: 'node24'
+  main: 'action/index.js'

@@ -15,6 +15,7 @@ import {
 } from './chunk-cache-explainer.js';
 import { diagnose as diagnoseDatabaseUrl, parseConnectionString } from './database-url-doctor.js';
 import { decode as decodeBuildError } from './build-error-decoder.js';
+import { explain as explainDatabaseConnection } from './database-connection-explainer.js';
 
 export {
   diagnoseCors,
@@ -23,6 +24,7 @@ export {
   diagnoseChunkCache,
   diagnoseDatabaseUrl,
   decodeBuildError,
+  explainDatabaseConnection,
 };
 
 /** Module names, in the order `detect` reports them. */
@@ -33,6 +35,7 @@ export const MODULES = [
   'chunk-cache-explainer',
   'database-url-doctor',
   'build-error-decoder',
+  'database-connection-explainer',
 ];
 
 /**
@@ -51,6 +54,8 @@ export const MODULES = [
  * - `database-url-doctor`    — the whole text (or a `DATABASE_URL=…` line) parses
  *   as a `postgres://` / `postgresql://` URL
  * - `build-error-decoder`    — `decodeBuildError(text)` matches at least one rule
+ * - `database-connection-explainer` — `explainDatabaseConnection({ error: text }).recognised`
+ *   (generic network / TLS codes only count next to a Postgres signal)
  *
  * Several modules can recognise the same text (a `Module not found` line in a
  * `next build` log, for instance). `detect` never echoes the input back.
@@ -69,5 +74,11 @@ export function detect(text) {
   if (response && response.status !== null && response.status !== undefined) hits.push('chunk-cache-explainer');
   if (parseConnectionString(input).ok) hits.push('database-url-doctor');
   if (decodeBuildError(input).length > 0) hits.push('build-error-decoder');
+  if (explainDatabaseConnection({ error: input }).recognised) hits.push('database-connection-explainer');
   return hits;
 }
+
+// The normalised result shared by the CLI (--json), the GitHub Action and the
+// MCP server (docs/CONTRACT.md), and the redactor it runs first.
+export { diagnose, RULES as CONTRACT_RULES, FAMILIES, CONTRACT_VERSION } from './contract.js';
+export { redact } from './redact.js';

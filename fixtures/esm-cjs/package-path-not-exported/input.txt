@@ -1,0 +1,2 @@
+Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './lib/utils' is not defined by "exports" in /app/node_modules/some-lib/package.json
+    at exportsNotFound (node:internal/modules/esm/resolve:314:10)

@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "chunk-cache.chunk-wrong-mime",
+      "family": "chunk-cache",
+      "severity": "warning"
+    }
+  ]
+}

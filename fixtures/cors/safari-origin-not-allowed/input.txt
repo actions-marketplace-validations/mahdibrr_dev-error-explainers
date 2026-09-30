@@ -1,0 +1,2 @@
+Origin https://app.example.com is not allowed by Access-Control-Allow-Origin. Status code: 204
+Fetch API cannot load https://abcd.supabase.co/functions/v1/hello due to access control checks.

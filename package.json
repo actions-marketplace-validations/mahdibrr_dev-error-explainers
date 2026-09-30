@@ -1,7 +1,8 @@
 {
   "name": "dev-error-explainers",
-  "version": "0.1.0",
-  "description": "Paste an error, get a deterministic explanation and the fix. Offline, zero-dependency explainers for CORS, ESM/CommonJS, npm ERESOLVE, ChunkLoadError caching, Postgres/Supabase connection strings and Next.js build errors. No LLM, no network.",
+  "version": "0.2.0",
+  "mcpName": "io.github.mahdibrr/dev-error-explainers",
+  "description": "Paste an error, get a deterministic explanation and the fix. Offline, zero-dependency explainers for CORS, ESM/CommonJS, npm ERESOLVE, ChunkLoadError caching, Postgres/Supabase connection strings and connection errors, and Next.js build errors — as a library, a CLI, a GitHub Action and an MCP server. No LLM, no network.",
   "type": "module",
   "main": "./src/index.js",
   "exports": {
@@ -17,9 +18,17 @@
       "types": "./types/chunk-cache-explainer.d.ts",
       "default": "./src/chunk-cache-explainer.js"
     },
+    "./contract": {
+      "types": "./types/contract.d.ts",
+      "default": "./src/contract.js"
+    },
     "./cors-error-explainer": {
       "types": "./types/cors-error-explainer.d.ts",
       "default": "./src/cors-error-explainer.js"
+    },
+    "./database-connection-explainer": {
+      "types": "./types/database-connection-explainer.d.ts",
+      "default": "./src/database-connection-explainer.js"
     },
     "./database-url-doctor": {
       "types": "./types/database-url-doctor.d.ts",
@@ -33,10 +42,15 @@
       "types": "./types/npm-eresolve-explainer.d.ts",
       "default": "./src/npm-eresolve-explainer.js"
     },
+    "./redact": {
+      "types": "./types/redact.d.ts",
+      "default": "./src/redact.js"
+    },
     "./package.json": "./package.json"
   },
   "bin": {
-    "dev-error-explainers": "bin/cli.js"
+    "dev-error-explainers": "bin/cli.js",
+    "dev-error-explainers-mcp": "bin/mcp.js"
   },
   "files": [
     "src",
@@ -76,7 +90,12 @@
     "nextjs",
     "postgres",
     "supabase",
-    "database-url"
+    "database-url",
+    "mcp",
+    "model-context-protocol",
+    "github-action",
+    "econnrefused",
+    "prisma"
   ],
   "homepage": "https://www.iloveblogs.blog/tools",
   "repository": {

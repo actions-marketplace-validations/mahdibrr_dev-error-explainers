@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 1,
+  "results": [
+    {
+      "rule": "database-url.supabase-api-host",
+      "family": "database-url",
+      "severity": "critical"
+    }
+  ]
+}

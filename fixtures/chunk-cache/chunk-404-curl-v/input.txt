@@ -1,0 +1,6 @@
+> GET /_next/static/chunks/app/page-8f2c1a.js HTTP/2
+> Host: app.example.com
+< HTTP/2 404
+< content-type: text/html; charset=utf-8
+< cf-cache-status: HIT
+< age: 41

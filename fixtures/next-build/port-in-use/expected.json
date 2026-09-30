@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "next-build.port-in-use",
+      "family": "next-build",
+      "severity": "warning"
+    }
+  ]
+}

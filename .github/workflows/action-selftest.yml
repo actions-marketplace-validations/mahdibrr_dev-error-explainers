@@ -1,0 +1,86 @@
+name: action-selftest
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ESM / CommonJS log
+        id: esm
+        uses: ./
+        with:
+          log-file: action/test-logs/esm-require.log
+          node-version: 18.17.0
+
+      - name: Next.js "Module not found" log (file annotation on src/index.js)
+        id: build
+        uses: ./
+        with:
+          log-file: action/test-logs/next-module-not-found.log
+
+      - name: CORS log from an e2e run
+        id: cors
+        uses: ./
+        with:
+          log-file: action/test-logs/cors-playwright.log
+
+      - name: Unrecognised log
+        id: none
+        uses: ./
+        with:
+          log-file: action/test-logs/unrecognised.log
+
+      - name: Unrecognised log with fail-on-unrecognised
+        id: strict
+        continue-on-error: true
+        uses: ./
+        with:
+          log-file: action/test-logs/unrecognised.log
+          fail-on-unrecognised: 'true'
+
+      - name: Assert outputs
+        shell: bash
+        # Outputs go through env, never interpolated into the script.
+        env:
+          ESM_REC: ${{ steps.esm.outputs.recognised }}
+          ESM_FAM: ${{ steps.esm.outputs.families }}
+          ESM_MD: ${{ steps.esm.outputs.summary-md }}
+          BUILD_REC: ${{ steps.build.outputs.recognised }}
+          BUILD_FAM: ${{ steps.build.outputs.families }}
+          BUILD_MD: ${{ steps.build.outputs.summary-md }}
+          CORS_REC: ${{ steps.cors.outputs.recognised }}
+          CORS_FAM: ${{ steps.cors.outputs.families }}
+          NONE_REC: ${{ steps.none.outputs.recognised }}
+          NONE_FAM: ${{ steps.none.outputs.families }}
+          NONE_MD: ${{ steps.none.outputs.summary-md }}
+          STRICT_OUTCOME: ${{ steps.strict.outcome }}
+        run: |
+          set -euo pipefail
+          fail() { echo "::error::selftest: $1"; exit 1; }
+          [ "$ESM_REC" = "true" ] || fail "esm: recognised=$ESM_REC"
+          [ "$ESM_FAM" = "esm-cjs-explainer" ] || fail "esm: families=$ESM_FAM"
+          grep -qF 'ERR_REQUIRE_ESM' <<<"$ESM_MD" || fail "esm: summary lacks ERR_REQUIRE_ESM"
+          grep -qF 'Run locally: `npx dev-error-explainers < esm-require.log`' <<<"$ESM_MD" || fail "esm: footer"
+          [ "$BUILD_REC" = "true" ] || fail "build: recognised=$BUILD_REC"
+          [ "$BUILD_FAM" = "build-error-decoder" ] || fail "build: families=$BUILD_FAM"
+          grep -qF '**Where:** `src/index.js:9:1`' <<<"$BUILD_MD" || fail "build: no file location"
+          [ "$CORS_REC" = "true" ] || fail "cors: recognised=$CORS_REC"
+          [ "$CORS_FAM" = "cors-error-explainer" ] || fail "cors: families=$CORS_FAM"
+          [ "$NONE_REC" = "false" ] || fail "none: recognised=$NONE_REC"
+          [ -z "$NONE_FAM" ] || fail "none: families=$NONE_FAM"
+          grep -qF 'No known error recognised' <<<"$NONE_MD" || fail "none: summary"
+          [ "$STRICT_OUTCOME" = "failure" ] || fail "fail-on-unrecognised did not fail (outcome=$STRICT_OUTCOME)"
+          echo "action selftest: all assertions passed"
+
+      - name: Families match the CLI (drift guard between action and bin/cli.js)
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in esm-require next-module-not-found cors-playwright unrecognised; do
+            cli=$(node bin/cli.js --json < "action/test-logs/$f.log" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>console.log([...new Set(JSON.parse(s).results.map(r=>r.module))].join(",")))' || true)
+            act=$(env "INPUT_LOG-FILE=action/test-logs/$f.log" GITHUB_OUTPUT= GITHUB_STEP_SUMMARY= node action/index.js | sed -n 's/^dev-error-explainers: [0-9]* finding(s) from \([^.]*\)\..*/\1/p' | sed 's/, /,/g')
+            [ "$cli" = "$act" ] || { echo "::error::drift on $f: cli=[$cli] action=[$act]"; exit 1; }
+          done

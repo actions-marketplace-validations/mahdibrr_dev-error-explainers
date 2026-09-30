@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "next-build.heap-oom",
+      "family": "next-build",
+      "severity": "critical"
+    }
+  ]
+}

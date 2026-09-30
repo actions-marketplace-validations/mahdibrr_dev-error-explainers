@@ -1,0 +1,14 @@
+node:internal/process/promises:246
+          triggerUncaughtException(err, true /* fromPromise */);
+          ^
+
+Error: connect ECONNREFUSED ::1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1161:16) {
+  errno: -4078,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '::1',
+  port: 5432
+}
+
+Node.js v17.0.1

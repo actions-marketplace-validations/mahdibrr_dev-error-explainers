@@ -1,0 +1,4 @@
+npm error code E404
+npm error 404 Not Found - GET https://registry.npmjs.org/@acme%2fnot-a-package - Not found
+npm error 404
+npm error 404  '@acme/not-a-package@*' is not in this registry.

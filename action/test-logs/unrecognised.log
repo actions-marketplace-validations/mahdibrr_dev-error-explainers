@@ -1,0 +1,8 @@
+> my-app@1.0.0 test
+> vitest run
+
+ FAIL  tests/math.test.ts > adds numbers
+AssertionError: expected 3 to be 4
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)

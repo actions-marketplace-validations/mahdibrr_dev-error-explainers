@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "esm.unknown-file-extension",
+      "family": "esm-cjs",
+      "severity": "critical"
+    }
+  ]
+}

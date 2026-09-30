@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "next-build.suspense-searchparams",
+      "family": "next-build",
+      "severity": "critical"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "database-connection.prisma-p1001",
+      "family": "database-connection",
+      "severity": "critical"
+    }
+  ]
+}

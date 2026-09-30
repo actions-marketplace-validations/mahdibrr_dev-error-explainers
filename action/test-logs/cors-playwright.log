@@ -1,0 +1,8 @@
+Running 3 tests using 1 worker
+
+  1) [chromium] › e2e/orders.spec.ts:12:5 › orders page loads
+
+    Error: browser console error:
+    Access to fetch at 'https://api.example.com/v1/orders' from origin 'http://localhost:3000' has been blocked by CORS policy: Request header field authorization is not allowed by Access-Control-Allow-Headers in preflight response.
+
+  1 failed

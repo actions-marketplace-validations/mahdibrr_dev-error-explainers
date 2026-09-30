@@ -6,6 +6,9 @@ import { analyseEresolveLog, EXAMPLE_LOG } from '../src/npm-eresolve-explainer.j
 import { diagnose as chunk, EXAMPLE_HTML, EXAMPLE_CHUNK } from '../src/chunk-cache-explainer.js';
 import { diagnose as dbUrl } from '../src/database-url-doctor.js';
 import { decode, EXAMPLES as BUILD_EXAMPLES } from '../src/build-error-decoder.js';
+import { explain as dbConnection } from '../src/database-connection-explainer.js';
+import { diagnose as contractDiagnose, RULES, FAMILIES, CONTRACT_VERSION } from '../src/contract.js';
+import { redact } from '../src/redact.js';
 
 describe('re-exports', () => {
   test('each main function is re-exported under a distinct name, unchanged', () => {
@@ -15,11 +18,25 @@ describe('re-exports', () => {
     expect(pkg.diagnoseChunkCache).toBe(chunk);
     expect(pkg.diagnoseDatabaseUrl).toBe(dbUrl);
     expect(pkg.decodeBuildError).toBe(decode);
+    expect(pkg.explainDatabaseConnection).toBe(dbConnection);
   });
 
-  test('MODULES lists the six modules', () => {
-    expect(MODULES).toHaveLength(6);
-    expect(new Set(MODULES).size).toBe(6);
+  test('the contract and the redactor are re-exported unchanged', () => {
+    expect(pkg.diagnose).toBe(contractDiagnose);
+    expect(pkg.CONTRACT_RULES).toBe(RULES);
+    expect(pkg.FAMILIES).toBe(FAMILIES);
+    expect(pkg.CONTRACT_VERSION).toBe(CONTRACT_VERSION);
+    expect(pkg.redact).toBe(redact);
+  });
+
+  test('FAMILIES and MODULES are in the same order (one family per module)', () => {
+    const moduleOf = new Map(RULES.map((r) => [r.family, r.module]));
+    expect(FAMILIES.map((f) => moduleOf.get(f))).toEqual(MODULES);
+  });
+
+  test('MODULES lists the seven modules', () => {
+    expect(MODULES).toHaveLength(7);
+    expect(new Set(MODULES).size).toBe(7);
   });
 });
 
@@ -52,6 +69,13 @@ describe('detect', () => {
   test('Postgres connection string, bare or as a DATABASE_URL line', () => {
     expect(detect('postgresql://postgres:pa@ss@db.abcd.supabase.co:5432/postgres')).toEqual(['database-url-doctor']);
     expect(detect('DATABASE_URL="postgres://u:p@localhost:5432/app"')).toEqual(['database-url-doctor']);
+  });
+
+  test('Postgres connection error (with a Postgres signal)', () => {
+    expect(detect('Error: connect ECONNREFUSED 127.0.0.1:5432')).toEqual(['database-connection-explainer']);
+    expect(detect('FATAL:  password authentication failed for user "andym"')).toEqual(['database-connection-explainer']);
+    // A generic network code without a Postgres signal is not claimed.
+    expect(detect('Error: connect ECONNREFUSED 127.0.0.1:6379')).toEqual([]);
   });
 
   test('every build-error-decoder sample is recognised by the decoder', () => {

@@ -1,0 +1,31 @@
+> npm install
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+npm ERR!
+npm ERR! While resolving: ecommerce-app@0.1.0
+npm ERR! Found: react@17.0.2
+npm ERR! node_modules/react
+npm ERR!   react@"latest" from the root project
+npm ERR!   peer react@"^16.8.0 || ^17.0.0" from @material-ui/core@4.11.4
+npm ERR!   node_modules/@material-ui/core
+npm ERR!     @material-ui/core@"latest" from the root project
+npm ERR!     peer @material-ui/core@"^4.0.0" from @material-ui/icons@4.11.2
+npm ERR!     node_modules/@material-ui/icons
+npm ERR!       @material-ui/icons@"latest" from the root project
+npm ERR!     1 more (@material-ui/lab)
+npm ERR!   10 more (react-dom, @material-ui/icons, @material-ui/lab, ...)
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! redux-form@"^8.3.6" from the root project
+npm ERR!
+npm ERR! Conflicting peer dependency: react@16.14.0
+npm ERR! node_modules/react
+npm ERR!   peer react@"^16.4.2" from redux-form@8.3.7
+npm ERR!   node_modules/redux-form
+npm ERR!     redux-form@"^8.3.6" from the root project
+npm ERR!
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force, or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR!
+npm ERR! See /Users/gergo/.npm/eresolve-report.txt for a full report.

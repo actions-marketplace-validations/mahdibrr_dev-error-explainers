@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "esm.import-outside-module",
+      "family": "esm-cjs",
+      "severity": "critical"
+    }
+  ]
+}

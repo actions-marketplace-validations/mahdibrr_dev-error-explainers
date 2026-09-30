@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "database-connection.too-many-connections",
+      "family": "database-connection",
+      "severity": "critical"
+    }
+  ]
+}

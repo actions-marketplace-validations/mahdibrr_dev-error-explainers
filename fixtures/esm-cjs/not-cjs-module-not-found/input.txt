@@ -1,0 +1,6 @@
+Error: Cannot find module 'express'
+Require stack:
+- /app/index.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1145:15) {
+  code: 'MODULE_NOT_FOUND'
+}

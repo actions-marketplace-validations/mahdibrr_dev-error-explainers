@@ -1,0 +1,16 @@
+{
+  "matched": true,
+  "redactions": 1,
+  "results": [
+    {
+      "rule": "database-url.password-needs-encoding",
+      "family": "database-url",
+      "severity": "critical"
+    },
+    {
+      "rule": "database-url.localhost",
+      "family": "database-url",
+      "severity": "info"
+    }
+  ]
+}

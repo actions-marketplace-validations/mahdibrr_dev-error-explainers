@@ -1,0 +1,1 @@
+Error: Invalid src prop (https://images.example.com/photo.jpg) on `next/image`, hostname "images.example.com" is not configured under images in your `next.config.js`

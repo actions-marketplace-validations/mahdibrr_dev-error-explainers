@@ -1,0 +1,31 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.mahdibrr/dev-error-explainers",
+  "title": "Dev error explainers",
+  "description": "Offline, deterministic cause and fix for Node, npm, Next.js, CORS and Postgres URL errors.",
+  "repository": {
+    "url": "https://github.com/mahdibrr/dev-error-explainers",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/mahdibrr/dev-error-explainers/blob/main/docs/MCP.md",
+  "version": "0.2.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "dev-error-explainers",
+      "version": "0.2.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp",
+          "description": "Start the MCP stdio server instead of the one-shot CLI."
+        }
+      ]
+    }
+  ]
+}

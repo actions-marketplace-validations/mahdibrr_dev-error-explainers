@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "esm.ts-in-node-modules",
+      "family": "esm-cjs",
+      "severity": "critical"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "database-url.placeholder-left",
+      "family": "database-url",
+      "severity": "critical"
+    },
+    {
+      "rule": "database-url.direct-username",
+      "family": "database-url",
+      "severity": "warning"
+    },
+    {
+      "rule": "database-url.direct-ipv6",
+      "family": "database-url",
+      "severity": "info"
+    },
+    {
+      "rule": "database-url.sslmode-missing-supabase",
+      "family": "database-url",
+      "severity": "info"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "esm.module-not-found-extension",
+      "family": "esm-cjs",
+      "severity": "critical"
+    }
+  ]
+}

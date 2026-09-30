@@ -1,0 +1,1 @@
+postgresql://app:my-pass_word.~1@db.example.com:5432/app?sslmode=verify-full

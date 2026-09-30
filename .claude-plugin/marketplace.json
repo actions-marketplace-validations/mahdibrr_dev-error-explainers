@@ -1,0 +1,17 @@
+{
+  "name": "dev-error-explainers",
+  "owner": {
+    "name": "Mahdi Ben Rhouma",
+    "url": "https://www.iloveblogs.blog"
+  },
+  "plugins": [
+    {
+      "name": "dev-error-explainers",
+      "source": "./",
+      "description": "Deterministic, offline explanations for known developer errors (skill + MCP server)."
+    }
+  ],
+  "metadata": {
+    "description": "Deterministic, offline explanations for known developer errors: a skill that runs dev-error-explainers, plus its MCP server."
+  }
+}

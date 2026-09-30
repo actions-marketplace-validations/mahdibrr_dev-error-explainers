@@ -1,0 +1,16 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "npm-eresolve.overriding-peer-dependency",
+      "family": "npm-eresolve",
+      "severity": "warning"
+    },
+    {
+      "rule": "npm-eresolve.overriding-peer-dependency",
+      "family": "npm-eresolve",
+      "severity": "warning"
+    }
+  ]
+}

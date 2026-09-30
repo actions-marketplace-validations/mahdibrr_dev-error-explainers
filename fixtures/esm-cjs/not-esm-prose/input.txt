@@ -1,0 +1,1 @@
+We migrated the package to ESM last week and set "type": "module"; everything runs fine.

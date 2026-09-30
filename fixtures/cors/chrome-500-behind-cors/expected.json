@@ -1,0 +1,21 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "cors.server-error-behind-cors",
+      "family": "cors",
+      "severity": "critical"
+    },
+    {
+      "rule": "cors.missing-allow-origin",
+      "family": "cors",
+      "severity": "critical"
+    },
+    {
+      "rule": "cors.no-cors-suggestion",
+      "family": "cors",
+      "severity": "info"
+    }
+  ]
+}

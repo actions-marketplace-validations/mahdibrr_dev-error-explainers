@@ -1,0 +1,16 @@
+{
+  "matched": true,
+  "redactions": 1,
+  "results": [
+    {
+      "rule": "database-url.sslmode-disable-supabase",
+      "family": "database-url",
+      "severity": "warning"
+    },
+    {
+      "rule": "database-url.direct-ipv6",
+      "family": "database-url",
+      "severity": "info"
+    }
+  ]
+}

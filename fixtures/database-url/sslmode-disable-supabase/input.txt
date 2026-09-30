@@ -1,0 +1,1 @@
+postgresql://postgres:pw@db.abcdefghij.supabase.co:5432/postgres?sslmode=disable

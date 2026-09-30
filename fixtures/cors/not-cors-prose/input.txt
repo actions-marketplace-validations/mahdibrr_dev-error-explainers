@@ -1,0 +1,1 @@
+I enabled CORS on the Express server with app.use(cors()) and the request now works.

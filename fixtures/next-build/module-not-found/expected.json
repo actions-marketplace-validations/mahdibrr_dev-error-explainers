@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "next-build.module-not-found",
+      "family": "next-build",
+      "severity": "critical"
+    }
+  ]
+}

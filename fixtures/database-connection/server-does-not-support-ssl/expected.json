@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "database-connection.server-no-ssl",
+      "family": "database-connection",
+      "severity": "critical"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Error: getaddrinfo ENOTFOUND postgres
+    at /app/node_modules/.pnpm/pg-pool@3.14.0_pg@8.23.0/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async installPostgresExtensions (/app/dist/scripts/postgres-extensions.js:12:5)

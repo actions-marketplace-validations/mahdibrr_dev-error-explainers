@@ -1,0 +1,7 @@
+(node:12345) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
+/home/me/project/server.js:1
+import express from 'express';
+^^^^^^
+
+SyntaxError: Cannot use import statement outside a module
+    at internalCompileFunction (node:internal/vm:76:18)

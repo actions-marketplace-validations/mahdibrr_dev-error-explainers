@@ -1,0 +1,11 @@
+/app/index.js:1
+const fetch = require('node-fetch');
+              ^
+
+Error [ERR_REQUIRE_ESM]: require() of ES Module /app/node_modules/node-fetch/src/index.js from /app/index.js not supported.
+Instead change the require of /app/node_modules/node-fetch/src/index.js in /app/index.js to a dynamic import() which is available in all CommonJS modules.
+    at Object.<anonymous> (/app/index.js:1:15) {
+  code: 'ERR_REQUIRE_ESM'
+}
+
+Node.js v18.17.0

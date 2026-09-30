@@ -1,0 +1,11 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "esm.cjs-global-in-esm",
+      "family": "esm-cjs",
+      "severity": "critical"
+    }
+  ]
+}

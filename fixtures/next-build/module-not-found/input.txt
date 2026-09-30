@@ -1,0 +1,4 @@
+Failed to compile.
+
+./src/app/page.tsx
+Module not found: Can't resolve '../components/Header'

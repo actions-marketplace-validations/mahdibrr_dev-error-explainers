@@ -1,0 +1,11 @@
+{
+  "name": "dev-error-explainers",
+  "displayName": "Dev Error Explainers",
+  "version": "0.2.0",
+  "description": "Explains known developer errors deterministically and offline: CORS, ESM/CommonJS, npm ERESOLVE, ChunkLoadError, DATABASE_URL, database connection errors and Next.js builds. No LLM guesswork for errors that are already understood.",
+  "author": { "name": "Mahdi Ben Rhouma", "url": "https://www.iloveblogs.blog" },
+  "homepage": "https://www.iloveblogs.blog/open-source",
+  "repository": "https://github.com/mahdibrr/dev-error-explainers",
+  "license": "MIT",
+  "keywords": ["debugging", "errors", "nodejs", "nextjs", "supabase", "postgres", "cors", "esm", "npm"]
+}

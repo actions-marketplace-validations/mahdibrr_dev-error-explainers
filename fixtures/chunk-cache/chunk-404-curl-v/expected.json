@@ -1,0 +1,16 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "results": [
+    {
+      "rule": "chunk-cache.chunk-missing",
+      "family": "chunk-cache",
+      "severity": "critical"
+    },
+    {
+      "rule": "chunk-cache.chunk-404-cached",
+      "family": "chunk-cache",
+      "severity": "warning"
+    }
+  ]
+}

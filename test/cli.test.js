@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { EXAMPLES as CORS_EXAMPLES } from '../src/cors-error-explainer.js';
 import { EXAMPLE_LOG as ERESOLVE_LOG } from '../src/npm-eresolve-explainer.js';
 import { EXAMPLE_HTML, EXAMPLE_CHUNK } from '../src/chunk-cache-explainer.js';
+import { diagnose } from '../src/contract.js';
 
 const CLI = fileURLToPath(new URL('../bin/cli.js', import.meta.url));
 const PKG = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
@@ -37,7 +38,8 @@ function run(args = [], input) {
   return { code: r.status, out: r.stdout, err: r.stderr };
 }
 
-const modulesOf = (json) => json.results.map((r) => r.module);
+// --json prints the contract result: one Diagnosis per finding, so a module can repeat.
+const modulesOf = (json) => [...new Set(json.results.map((r) => r.module))];
 
 describe('cli — input sources', () => {
   test('stdin: ERR_REQUIRE_ESM is explained, exit 0', () => {
@@ -84,8 +86,7 @@ describe('cli — input sources', () => {
       expect(code).toBe(0);
       const json = JSON.parse(out);
       expect(modulesOf(json)).toEqual(['chunk-cache-explainer']);
-      expect(json.results[0].verdict).toBe('cause-found');
-      expect(json.results[0].findings.map((f) => f.id)).toContain('chunk-missing');
+      expect(json.results.map((d) => d.rule)).toContain('chunk-cache.chunk-missing');
       // The session cookie in the example headers is never echoed.
       expect(out).not.toContain('abc123secret');
     } finally {
@@ -95,32 +96,28 @@ describe('cli — input sources', () => {
 });
 
 describe('cli — --json', () => {
-  test('stable top-level and finding shape', () => {
+  test('--json is exactly the contract result (docs/CONTRACT.md)', () => {
     const { code, out } = run(['--json'], REQUIRE_ESM);
     expect(code).toBe(0);
     const json = JSON.parse(out);
-    expect(Object.keys(json)).toEqual(['tool', 'version', 'input', 'recognised', 'results']);
-    expect(json).toMatchObject({ tool: 'dev-error-explainers', version: PKG.version, recognised: true, input: { source: 'stdin' } });
-    expect(modulesOf(json)).toEqual(['esm-cjs-explainer']);
-    const [result] = json.results;
-    expect(Object.keys(result)).toEqual(['module', 'label', 'verdict', 'notes', 'findings', 'snippet', 'corrected', 'extra']);
-    const [f] = result.findings;
-    expect(Object.keys(f)).toEqual(['id', 'severity', 'title', 'cause', 'why', 'fixes', 'source', 'sources', 'evidence']);
-    expect(f.id).toBe('require-esm');
-    expect(f.source).toMatch(/^https:\/\//);
-    for (const fix of f.fixes) expect(Object.keys(fix)).toEqual(['title', 'detail', 'code']);
+    expect(json).toEqual(diagnose(REQUIRE_ESM));
+    expect(Object.keys(json)).toEqual(['version', 'matched', 'redactions', 'results']);
+    expect(json).toMatchObject({ version: '0.1', matched: true, redactions: 0 });
+    const [d] = json.results;
+    expect(d).toMatchObject({ rule: 'esm.require-esm', family: 'esm-cjs', module: 'esm-cjs-explainer', severity: 'critical', confidence: 'high' });
+    expect(d.evidence[0].url).toMatch(/^https:\/\//);
   });
 
   test('unrecognised input in JSON: recognised false, no results, exit 2', () => {
     const { code, out } = run(['--json', '--text', 'everything is fine, build succeeded']);
     expect(code).toBe(2);
-    expect(JSON.parse(out)).toMatchObject({ recognised: false, results: [] });
+    expect(JSON.parse(out)).toEqual({ version: '0.1', matched: false, redactions: 0, results: [] });
   });
 
   test('--node is passed to the ESM explainer', () => {
     const { out } = run(['--json', '--node', '22.12.0', '--text', 'Error [ERR_REQUIRE_ESM]: require() of ES Module /app/node_modules/x/index.js not supported.']);
-    const [f] = JSON.parse(out).results[0].findings;
-    expect(f.cause).toContain('You report Node.js 22.12.0');
+    const [d] = JSON.parse(out).results;
+    expect(d.cause).toContain('You report Node.js 22.12.0');
   });
 });
 
@@ -129,13 +126,15 @@ describe('cli — --only and detection', () => {
 
   test('auto-detection keeps every explainer that recognises something', () => {
     const json = JSON.parse(run(['--json'], MIXED).out);
-    expect(modulesOf(json)).toEqual(['esm-cjs-explainer', 'build-error-decoder']);
+    expect(modulesOf(json).sort()).toEqual(['build-error-decoder', 'esm-cjs-explainer']);
   });
 
   test('--only restricts to one module (alias or full name)', () => {
     const a = JSON.parse(run(['--json', '--only', 'build'], MIXED).out);
     expect(modulesOf(a)).toEqual(['build-error-decoder']);
-    expect(a.results[0].findings[0]).toMatchObject({ id: 'heap-oom', evidence: 'line 14: FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory' });
+    expect(a.results[0].rule).toBe('next-build.heap-oom');
+    // The matched line is printed in the human output (it is not part of the contract shape).
+    expect(run(['--only', 'build'], MIXED).out).toContain('Evidence: line 14: FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory');
     const b = JSON.parse(run(['--json', '--only=esm-cjs-explainer'], MIXED).out);
     expect(modulesOf(b)).toEqual(['esm-cjs-explainer']);
   });
@@ -172,9 +171,10 @@ describe('cli — secrets', () => {
       }
     }
     const json = JSON.parse(run(['--json'], log).out);
-    const db = json.results.find((r) => r.module === 'database-url-doctor');
-    expect(db.findings.map((f) => f.id)).toContain('password-needs-encoding');
-    expect(db.corrected[0].value).toContain('[YOUR-PASSWORD]');
+    const db = json.results.filter((d) => d.module === 'database-url-doctor');
+    expect(db.map((d) => d.rule)).toContain('database-url.password-needs-encoding');
+    const corrected = db.flatMap((d) => d.fixes).find((f) => f.title === 'Corrected connection string (password masked)');
+    expect(corrected.code).toContain('[YOUR-PASSWORD]');
   });
 
   test('a credentialed URL echoed as build evidence is masked', () => {
@@ -182,6 +182,26 @@ describe('cli — secrets', () => {
     expect(code).toBe(0);
     expect(out).toContain('Environment variable undefined at runtime');
     expect(out).not.toContain('hunter2hunter2');
+  });
+});
+
+describe('cli — database connection errors', () => {
+  test('ECONNREFUSED on 5432 → database-connection, --only database-connection', () => {
+    const text = 'Error: connect ECONNREFUSED 127.0.0.1:5432';
+    const { code, out } = run(['--text', text]);
+    expect(code).toBe(0);
+    expect(out).toContain('== Database connection (database-connection-explainer) ==');
+    const json = JSON.parse(run(['--json', '--only', 'database-connection', '--text', text]).out);
+    expect(json.results.map((d) => d.rule)).toEqual(['database-connection.econnrefused']);
+  });
+});
+
+describe('cli — mcp subcommand', () => {
+  test('`mcp` starts the MCP server: initialize is answered on stdout', () => {
+    const init = { jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'jest', version: '1' } } };
+    const r = spawnSync(process.execPath, [CLI, 'mcp'], { input: `${JSON.stringify(init)}\n`, encoding: 'utf8' });
+    const msg = JSON.parse(r.stdout.trim().split('\n')[0]);
+    expect(msg).toMatchObject({ id: 1, result: { protocolVersion: '2025-06-18', serverInfo: { name: 'dev-error-explainers', version: PKG.version } } });
   });
 });
 

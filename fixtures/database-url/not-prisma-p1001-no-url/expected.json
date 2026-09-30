@@ -1,0 +1,14 @@
+{
+  "matched": true,
+  "redactions": 0,
+  "absentFamilies": [
+    "database-url"
+  ],
+  "results": [
+    {
+      "rule": "database-connection.prisma-p1001",
+      "family": "database-connection",
+      "severity": "critical"
+    }
+  ]
+}

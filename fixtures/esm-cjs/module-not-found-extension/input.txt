@@ -1,0 +1,10 @@
+node:internal/modules/esm/resolve:265
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/app/src/utils' imported from /app/src/index.js
+Did you mean to import "./utils.js"?
+    at finalizeResolution (node:internal/modules/esm/resolve:265:11) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///app/src/utils'
+}

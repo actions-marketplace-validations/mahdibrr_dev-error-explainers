@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+X-Powered-By: Next.js
