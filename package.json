@@ -1,0 +1,26 @@
+{
+  "name": "dev-error-explainers",
+  "version": "0.1.0",
+  "description": "Paste a developer error, get the real cause and the fix. Pure, offline, zero-dependency explainers for CORS, ESM/CommonJS, npm ERESOLVE, ChunkLoadError caching, Postgres/Supabase connection strings and Next.js build errors.",
+  "type": "module",
+  "exports": {
+    "./build-error-decoder": "./src/build-error-decoder.js",
+    "./chunk-cache-explainer": "./src/chunk-cache-explainer.js",
+    "./cors-error-explainer": "./src/cors-error-explainer.js",
+    "./database-url-doctor": "./src/database-url-doctor.js",
+    "./esm-cjs-explainer": "./src/esm-cjs-explainer.js",
+    "./npm-eresolve-explainer": "./src/npm-eresolve-explainer.js"
+  },
+  "files": ["src", "README.md", "LICENSE"],
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "jest": { "testEnvironment": "node", "transform": {} },
+  "devDependencies": { "jest": "^30.0.0" },
+  "engines": { "node": ">=20" },
+  "keywords": ["cors", "esm", "commonjs", "err_require_esm", "eresolve", "chunkloaderror", "nextjs", "supabase", "postgres", "database-url", "debugging", "error-explainer"],
+  "homepage": "https://www.iloveblogs.blog/tools",
+  "repository": { "type": "git", "url": "git+https://github.com/mahdibrr/dev-error-explainers.git" },
+  "author": "Mahdi Ben Rhouma",
+  "license": "MIT"
+}
