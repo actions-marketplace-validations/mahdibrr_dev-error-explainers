@@ -1,0 +1,55 @@
+name: Wrong diagnosis
+description: An explainer recognised the error but the cause or the fix it gave is wrong.
+title: "Wrong diagnosis: "
+labels: ["wrong-diagnosis"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Mask secrets (tokens, passwords, cookies) yourself before pasting — replace them, do not delete the line.
+  - type: dropdown
+    id: module
+    attributes:
+      label: Which explainer?
+      options:
+        - cors-error-explainer
+        - esm-cjs-explainer
+        - npm-eresolve-explainer
+        - chunk-cache-explainer
+        - database-url-doctor
+        - build-error-decoder
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Exact input
+      description: The error text, headers or connection string you passed, exactly as given.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: got
+    attributes:
+      label: What the explainer said
+      description: The finding title / fix it returned (or the tool page output).
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the real cause or fix was
+      description: What actually fixed it, and how you know.
+    validations:
+      required: true
+  - type: input
+    id: evidence
+    attributes:
+      label: Evidence link
+      description: Documentation, changelog, issue or commit that shows the correct behaviour.
+      placeholder: https://
+  - type: input
+    id: versions
+    attributes:
+      label: Package and tool versions
+      placeholder: "dev-error-explainers 0.1.0, node 22.12.0, next 15.5.4"

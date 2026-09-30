@@ -1,0 +1,18 @@
+{
+  // Type-checks the hand-written declarations in this folder, the way a consumer
+  // sees them: test/types.test-d.ts imports the package by name, so resolution goes through
+  // package.json "exports" → "types". Run: npx -p typescript@5 tsc -p types/tsconfig.json
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2022",
+    "lib": ["es2022"],
+    "types": [],
+    "skipLibCheck": false,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "include": ["./*.d.ts", "../test/types.test-d.ts"]
+}

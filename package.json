@@ -1,26 +1,96 @@
 {
   "name": "dev-error-explainers",
   "version": "0.1.0",
-  "description": "Paste a developer error, get the real cause and the fix. Pure, offline, zero-dependency explainers for CORS, ESM/CommonJS, npm ERESOLVE, ChunkLoadError caching, Postgres/Supabase connection strings and Next.js build errors.",
+  "description": "Paste an error, get a deterministic explanation and the fix. Offline, zero-dependency explainers for CORS, ESM/CommonJS, npm ERESOLVE, ChunkLoadError caching, Postgres/Supabase connection strings and Next.js build errors. No LLM, no network.",
   "type": "module",
+  "main": "./src/index.js",
   "exports": {
-    "./build-error-decoder": "./src/build-error-decoder.js",
-    "./chunk-cache-explainer": "./src/chunk-cache-explainer.js",
-    "./cors-error-explainer": "./src/cors-error-explainer.js",
-    "./database-url-doctor": "./src/database-url-doctor.js",
-    "./esm-cjs-explainer": "./src/esm-cjs-explainer.js",
-    "./npm-eresolve-explainer": "./src/npm-eresolve-explainer.js"
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./build-error-decoder": {
+      "types": "./types/build-error-decoder.d.ts",
+      "default": "./src/build-error-decoder.js"
+    },
+    "./chunk-cache-explainer": {
+      "types": "./types/chunk-cache-explainer.d.ts",
+      "default": "./src/chunk-cache-explainer.js"
+    },
+    "./cors-error-explainer": {
+      "types": "./types/cors-error-explainer.d.ts",
+      "default": "./src/cors-error-explainer.js"
+    },
+    "./database-url-doctor": {
+      "types": "./types/database-url-doctor.d.ts",
+      "default": "./src/database-url-doctor.js"
+    },
+    "./esm-cjs-explainer": {
+      "types": "./types/esm-cjs-explainer.d.ts",
+      "default": "./src/esm-cjs-explainer.js"
+    },
+    "./npm-eresolve-explainer": {
+      "types": "./types/npm-eresolve-explainer.d.ts",
+      "default": "./src/npm-eresolve-explainer.js"
+    },
+    "./package.json": "./package.json"
   },
-  "files": ["src", "README.md", "LICENSE"],
+  "bin": {
+    "dev-error-explainers": "bin/cli.js"
+  },
+  "files": [
+    "src",
+    "types",
+    "bin",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "!types/tsconfig.json"
+  ],
+  "sideEffects": false,
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
-  "jest": { "testEnvironment": "node", "transform": {} },
-  "devDependencies": { "jest": "^30.0.0" },
-  "engines": { "node": ">=20" },
-  "keywords": ["cors", "esm", "commonjs", "err_require_esm", "eresolve", "chunkloaderror", "nextjs", "supabase", "postgres", "database-url", "debugging", "error-explainer"],
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
+  "devDependencies": {
+    "jest": "^30.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "error",
+    "debugging",
+    "error-explainer",
+    "cors",
+    "esm",
+    "commonjs",
+    "err_require_esm",
+    "npm",
+    "eresolve",
+    "peer-dependencies",
+    "chunkloaderror",
+    "nextjs",
+    "postgres",
+    "supabase",
+    "database-url"
+  ],
   "homepage": "https://www.iloveblogs.blog/tools",
-  "repository": { "type": "git", "url": "git+https://github.com/mahdibrr/dev-error-explainers.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahdibrr/dev-error-explainers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mahdibrr/dev-error-explainers/issues"
+  },
   "author": "Mahdi Ben Rhouma",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "types": "./types/index.d.ts"
 }
