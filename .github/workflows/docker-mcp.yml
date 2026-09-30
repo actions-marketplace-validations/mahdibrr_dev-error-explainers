@@ -1,0 +1,28 @@
+name: docker-mcp
+
+# The Dockerfile is what Glama (and container users) run: build it and check the
+# MCP server answers initialize and lists its one tool.
+on:
+  push:
+    paths: ['Dockerfile', '.dockerignore', 'bin/**', 'src/**', 'package.json', '.github/workflows/docker-mcp.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-handshake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t dev-error-explainers-mcp .
+      - name: MCP handshake inside the container
+        run: |
+          out="$(printf '%s\n' \
+            '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci","version":"1"}}}' \
+            '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+            '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+            | docker run -i --rm dev-error-explainers-mcp)"
+          echo "$out"
+          echo "$out" | grep -q '"serverInfo"'
+          echo "$out" | grep -q '"explain_error"'
