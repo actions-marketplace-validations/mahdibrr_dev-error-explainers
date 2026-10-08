@@ -7,14 +7,14 @@
     "url": "https://github.com/mahdibrr/dev-error-explainers",
     "source": "github"
   },
-  "websiteUrl": "https://github.com/mahdibrr/dev-error-explainers/blob/main/docs/MCP.md",
-  "version": "0.2.0",
+  "websiteUrl": "https://www.iloveblogs.blog/open-source",
+  "version": "0.2.1",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "dev-error-explainers",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"

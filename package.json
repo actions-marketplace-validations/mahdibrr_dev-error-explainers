@@ -1,6 +1,6 @@
 {
   "name": "dev-error-explainers",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "mcpName": "io.github.mahdibrr/dev-error-explainers",
   "description": "Paste an error, get a deterministic explanation and the fix. Offline, zero-dependency explainers for CORS, ESM/CommonJS, npm ERESOLVE, ChunkLoadError caching, Postgres/Supabase connection strings and connection errors, and Next.js build errors — as a library, a CLI, a GitHub Action and an MCP server. No LLM, no network.",
   "type": "module",

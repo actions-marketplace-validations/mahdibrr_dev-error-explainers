@@ -4,7 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
-## [0.2.0] - Unreleased
+## [0.2.1] - 2026-10-08
+
+No change to the library, the CLI, the Action or the MCP tool.
+
+### Changed
+
+- `server.json`: `websiteUrl` points at the project page, https://www.iloveblogs.blog/open-source,
+  instead of `docs/MCP.md` (the MCP setup guide stays linked from the README).
+- Issue templates list the seventh module, `database-connection-explainer`.
+
+## [0.2.0] - 2026-09-30
 
 ### Breaking
 
@@ -91,4 +101,6 @@ First npm release.
 - `detect(text)`: the list of modules whose own recogniser matches a pasted text.
 - Release workflow publishing to npm with Trusted Publishing (OIDC) and provenance.
 
+[0.2.1]: https://github.com/mahdibrr/dev-error-explainers/releases/tag/v0.2.1
+[0.2.0]: https://github.com/mahdibrr/dev-error-explainers/releases/tag/v0.2.0
 [0.1.0]: https://github.com/mahdibrr/dev-error-explainers/releases/tag/v0.1.0

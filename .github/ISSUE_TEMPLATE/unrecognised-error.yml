@@ -18,6 +18,7 @@ body:
         - npm-eresolve-explainer
         - chunk-cache-explainer
         - database-url-doctor
+        - database-connection-explainer
         - build-error-decoder
         - Not sure
     validations:
