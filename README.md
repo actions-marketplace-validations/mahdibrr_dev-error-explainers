@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/dev-error-explainers.svg)](https://www.npmjs.com/package/dev-error-explainers)
 [![test](https://github.com/mahdibrr/dev-error-explainers/actions/workflows/test.yml/badge.svg)](https://github.com/mahdibrr/dev-error-explainers/actions/workflows/test.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mahdibrr/dev-error-explainers/blob/main/LICENSE)
+[![Dev Error Explainers on AI Agents Listing](https://aiagentslisting.com/dev-error-explainers/badge.svg)](https://aiagentslisting.com/mcp/dev-error-explainers)
 
 **Paste an error. Get a deterministic explanation.**
 
