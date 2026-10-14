@@ -229,3 +229,9 @@ is a bug too — there is a separate template for that.
 ## License
 
 [MIT](https://github.com/mahdibrr/dev-error-explainers/blob/main/LICENSE)
+
+## Maintainer and project context
+
+Maintained by [Mahdi Ben Rhouma](https://mahdibr.online/about/).
+
+- [Project notes and browser tools](https://mahdibr.online/open-source/dev-error-explainers/) - How the offline library connects to browser tools, the CLI and public examples.
